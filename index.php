@@ -21,7 +21,6 @@
                 <div class="col-4">
                     <button class="btn btn-success" type="submit">Rechercher</button>
                 </div>
-
             </div>
         </form>
 
@@ -49,6 +48,5 @@
         ?>
 
     </div>
-
 </body>
 </html>

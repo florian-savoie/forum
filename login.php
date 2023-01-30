@@ -21,6 +21,5 @@
         <br><br>
         <a href="signup.php"><p>Je n'ai pas de compte, je m'inscris</p></a>
     </form>
-
 </body>
 </html>
