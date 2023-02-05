@@ -1,0 +1,12 @@
+.card-img-top{
+    max-height: 230px!important;
+    width: 100%;
+}
+
+.card{
+    border-radius: 1.5rem;
+}
+
+.card-body{
+    background-color: rgb(227, 238, 238);
+}
