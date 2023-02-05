@@ -19,7 +19,7 @@
           <a class="nav-link" href="listPlayer.php?page=1">les membres</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="messagerie">messagerie</a>
+          <a class="nav-link" href="messagerie.php?recu">messagerie</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="crypto.php">Crypto</a>
