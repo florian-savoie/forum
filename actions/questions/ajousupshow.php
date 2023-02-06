@@ -12,51 +12,57 @@ $infosarticles = $afficherinfosarticles->fetchALL();
 if(isset($_POST['ajoutArticle'])){
  if (isset($_POST['category']) && !empty($_POST['category']) && isset($_POST['description']) && !empty($_POST['description']) && isset($_POST['titre']) && !empty($_POST['titre']) && isset($_POST['image']) && !empty($_POST['image'])){
   
-        $selectcategory = $_POST['category'];
-        $titre = $_POST['titre'];
-        $description = $_POST['description'];
-        $image = $_POST['image'];
+        $selectcategory = htmlspecialchars($_POST['category']);
+        $titre = htmlspecialchars($_POST['titre']);
+        $description = htmlspecialchars($_POST['description']);
+        $image = htmlspecialchars($_POST['image']);
+        try {
+               $insertarticle = $bdd->prepare('INSERT INTO articles(pseudo_auteur, id_category, titre, description, image_article )VALUES(:pseudo_auteur, :id_category, :titre, :description, :image_article)');
+               $insertarticle->bindParam('pseudo_auteur', $_SESSION['pseudo'], PDO::PARAM_STR);
+               $insertarticle->bindParam('id_category', $selectcategory, PDO::PARAM_INT);
+               $insertarticle->bindParam('titre', $titre, PDO::PARAM_STR);
+               $insertarticle->bindParam('description', $description, PDO::PARAM_STR);
+               $insertarticle->bindParam('image_article', $image, PDO::PARAM_STR);
+               $insertarticle->execute();
 
-               $insertarticle = $bdd->prepare('INSERT INTO articles(pseudo_auteur, id_category, titre, description, image_article )VALUES(?, ?, ?, ?, ?)');
-                $insertarticle->execute(
-                    array(
-                        $_SESSION['pseudo'],
-                        $selectcategory, 
-                        $titre, 
-                        $description, 
-                        $image
-                    ) 
-                );
+         }  catch (PDOException $e)
+                {
+                 die($e->getMessage());
+                }
      }               
-}  
+}
 
 
-    
-/*
-if(isset($_POST['modifier'])){
-            $selectcategory = $_POST['category'];
-            $afficherlesarticles = $bdd->prepare('SELECT a.titre, a.id FROM articles a , category c WHERE a.id_category = c.id and c.id = ?');
-            $afficherlesarticles->execute(array($selectcategory));
-            $afficherarticles = $afficherlesarticles->fetchALL();
-            
-        }      
-*/
-
-        if(isset($_POST['supprimer'])){
-            $selectsuppresion = $_POST['supp'];
-            $selectsuppresionarticles = $bdd->prepare('DELETE FROM articles WHERE id = ?');
-            $selectsuppresionarticles->execute(array($selectsuppresion));
-            header('Location: ajoutsuparticle.php?supprimer=1');
-
-        }    
 
 
-        if (isset($_POST["modifierarticle"])){
-   /* $tesst = $_POST["category"];*/
-    $selectcategory = $_POST['category'];
-    $affichermofication = $bdd->prepare('SELECT c.category ,a.id_category , a.titre, a.description, a.pseudo_auteur, a.date_publication ,a.id from category c , articles a where c.id = a.id_category and a.id_category = ? ');
-    $affichermofication->execute(array($selectcategory));
-    $affichermofications = $affichermofication->fetchALL();
+
+if (isset($_POST['supprimer'])) 
+  {
+
+    $selectsuppresion = htmlspecialchars($_POST['supp']);
+    try {
+        $selectsuppresionarticles = $bdd->prepare('DELETE FROM articles WHERE id = :id');
+        $selectsuppresionarticles->bindParam('id', $selectsuppresion, PDO::PARAM_INT);
+        $selectsuppresionarticles->execute();
+        }  catch (PDOException $e)
+             {
+              die($e->getMessage());
+             }
+
+    header('Location: ajoutsuparticle.php?supprimer=1');
+ }
 
 
-        }
+if (isset($_POST["modifierarticle"])) {
+    $selectcategory = htmlspecialchars($_POST['category']);
+    try {
+        $affichermofication = $bdd->prepare('SELECT c.category ,a.id_category , a.titre, a.description, a.pseudo_auteur, a.date_publication ,a.id
+        from category c , articles a where c.id = a.id_category and a.id_category = :id_category ');
+        $affichermofication->bindParam('id_category', $selectcategory, PDO::PARAM_INT);
+        $affichermofication->execute();
+        $affichermofications = $affichermofication->fetchALL();
+    } catch (PDOException $e) {
+        die($e->getMessage());
+    }
+
+}

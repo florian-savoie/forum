@@ -68,5 +68,7 @@ if ($message['delete_msg'] == 0) { ?>
 
  </div>
 </div>
+<?php include 'includes/footer.php'; ?>
+
 </body>
 </html>

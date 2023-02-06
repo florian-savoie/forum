@@ -124,6 +124,7 @@
 
 <script src="assets/profil.js"></script>
 
+<?php include 'includes/footer.php'; ?>
 
 </body>
 </html>

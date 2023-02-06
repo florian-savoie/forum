@@ -68,6 +68,7 @@ if (isset($error) AND !empty($error)){
     
 
 
-   
+<?php include 'includes/footer.php'; ?>
+
 </body>
 </html>

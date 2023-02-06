@@ -14,7 +14,7 @@
 <div class="row d-flex justify-content-center my-5">
    <div class="col-2"> <a href="ajoutsuparticle.php?ajouter=1"> <input class="btn btn-primary" type="submit" value="ajouter"></a></div>
    <div class="col-2"><a href="ajoutsuparticle.php?modifier=1"> <input class="btn btn-success" type="submit" value="modifier"></a></div> 
-    <div class="col-2"> <a href="ajoutsuparticle.php?supprimer=1"> <input type="submit" class="btn btn-danger" value="supprimer"></a></div>
+    <div class="col-2"> <a href="ajoutsuparticle.php?supprimer=1"> <input type="submit" class="btn btn-danger" value="supprimer ❌"></a></div>
 </div>
 
 
@@ -119,7 +119,7 @@
         <td><?= $infosarticle['date_publication'] ?></td>
         <td><form  method="post">
             <input type="hidden" name="supp" value="<?=$infosarticle['id'] ?>">
-            <button type="submit" class="btn btn-danger" name="supprimer">supprimer</button>
+            <button type="submit" class="btn btn-danger" name="supprimer">❌</button>
           </form></td>
       </tr>
     </tbody>
@@ -142,6 +142,7 @@
     
 
 
-   
+<?php include 'includes/footer.php'; ?>
+
 </body>
 </html>

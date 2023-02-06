@@ -34,5 +34,6 @@
 
         <button type="submit" class="btn btn-primary" name="validate">Publier la question</button>
    </form>
+   <?php include 'includes/footer.php'; ?>
 </body>
 </html>

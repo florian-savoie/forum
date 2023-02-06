@@ -133,6 +133,7 @@ else
 </ul> </div>
 </div>
 <script src=""></script>
+<?php include 'includes/footer.php'; ?>
 
 </body>
 </html>

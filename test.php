@@ -60,3 +60,5 @@
       </tr>
     </tbody>
   </table>
+
+  <?php if (isset($_GET['chat'])) { echo $url; } else { echo "?chat"; } ?>
